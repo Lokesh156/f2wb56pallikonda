@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  - let results=[{forest_area:"north",forest_color:"green",forest_dense:"118mm"} , {forest_area:"south",forest_color:"white",forest_dense:"500mm"} , {forest_area:"east",forest_color:"yellow",forest_dense:"600mm"}]
+  div(class="container-fluid") 
+   div(class="row")
+    each forest,index in results
+       div(class="col-sm-2" onclick=`buy(${index})`) forest_area: #{forest.forest_area}, forest_color: #{forest.forest_color}, forest_dense: #{forest.forest_dense} 
+  script.
+    let item = 0
+      function buy(item){
+        alert(`You purchased item ${item}`);
+      }
+   
