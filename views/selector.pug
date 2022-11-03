@@ -1,0 +1,25 @@
+extends layout
+
+
+
+block content
+
+  h1 Selector
+
+  - var image_names = ["yellow.jpg", "green.jpg", "white.jpg", "w3.jpg", "w2.jpg"]
+
+ 
+
+  - for(var i=0;i<3;i++){      
+
+    - var random = Math.floor(Math.random()*5);
+
+      img(src="/images/"+image_names[random] , height="300px", width="300px", style="margin:12px")
+
+
+
+  - }
+
+  script.
+
+  console.log(images[random])
