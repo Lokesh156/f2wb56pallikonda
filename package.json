@@ -12,5 +12,17 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
-  }
+  },
+  "description": "Lab9",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lokesh156/f2wb56pallikonda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lokesh156/f2wb56pallikonda/issues"
+  },
+  "homepage": "https://github.com/Lokesh156/f2wb56pallikonda#readme"
 }
