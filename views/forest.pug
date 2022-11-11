@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let results=[{forest_area:"north",forest_color:"green",forest_dense:"118mm"} , {forest_area:"south",forest_color:"white",forest_dense:"500mm"} , {forest_area:"east",forest_color:"yellow",forest_dense:"600mm"}]
+  - let results = result
   div(class="container-fluid") 
    div(class="row")
     each forest,index in results
