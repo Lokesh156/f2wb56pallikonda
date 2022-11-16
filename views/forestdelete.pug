@@ -1,0 +1,54 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let forestid = toShow._id 
+    - let forest_area = toShow.forest_area 
+    - let forest_color = toShow.forest_color 
+    - let forest_size = toShow.forest_size 
+    - let actionid = "/resource/forest/" + forestid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='forestAttr mr-3') forest ID is: 
+        div #{forestid} 
+      div.row 
+        div(class='forestAttr mr-3') forest Area is: 
+        div #{forest_area} 
+      div.row 
+        div(class='forestAttr mr-3') forest color is: 
+        div #{forest_color} 
+      div.row 
+        div(class='forestAttr mr-3') forest size is: 
+        div #{forest_size} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the forest collection 
+      window.location.href='/forest' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/forest' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
+ 
