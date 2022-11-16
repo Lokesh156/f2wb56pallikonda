@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let forestid = toShow._id 
+  - let forest_area = toShow.forest_area 
+  - let forest_color = toShow.forest_color
+  - let forest_dense = toShow.forest_dense
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{forestid} 
+  - let actionid = "/resource/forest/" + forestid 
+  form(id='ForestForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.forestAttr(for='forest_area')  forest_area 
+        input#forest_area(type='text', name='forest_area', value= forest_area ) 
+    div.form-group 
+        label.forestAttr(for='forest_color')  forest_color
+        input#forest_color(type='text', name='forest_color', value= forest_color ) 
+    div.form-group 
+        label.forestAttr(for='forest_dense')  forest_dense 
+        input#forest_dense(type='text', name='forest_dense', value= forest_dense) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['ForestForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    });
