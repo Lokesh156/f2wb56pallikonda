@@ -82,3 +82,69 @@ ${JSON.stringify(req.body)}`)
 failed`);
  }
 };
+
+// Handle Forest delete on DELETE.
+exports.forest_delete = async function(req, res) {
+  console.log("delete " + req.params.id)
+  try {
+  result = await Forest.findByIdAndDelete( req.params.id)
+  console.log("Removed " + result)
+  res.send(result)
+  } catch (err) {
+  res.status(500)
+  res.send(`{"error": Error deleting ${err}}`);
+  }
+ };
+ // Handle a show one view with id specified by query
+ exports.forest_view_one_Page = async function(req, res) {
+  console.log("single view for id " + req.query.id)
+  try{
+  result = await Forest.findById( req.query.id)
+  res.render('forestdetail',
+ { title: 'forest Detail', toShow: result });
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+ };
+ // Handle building the view for creating a forest.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.forest_create_Page = function(req, res) {
+  console.log("create view")
+  try{
+  res.render('forestcreate', { title: 'Forest Create'});
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+ };
+ // Handle building the view for updating a forest.
+// query provides the id
+exports.forest_update_Page = async function(req, res) {
+  console.log("update view for item "+req.query.id)
+  try{
+  let result = await Forest.findById(req.query.id)
+  res.render('forestupdate', { title: 'Forest Update', toShow: result });
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+ };
+ 
+ // Handle a delete one view with id from query
+exports.forest_delete_Page = async function(req, res) {
+  console.log("Delete view for id " + req.query.id)
+  try{
+  result = await Forest.findById(req.query.id)
+  res.render('forestdelete', { title: 'Forest Delete', toShow:
+ result });
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+};
