@@ -1,0 +1,16 @@
+extends layout
+block content
+ h1= title
+ - let forest_area = toShow.forest_area
+ - let forest_color = toShow.forest_color
+ - let forest_dense = toShow.forest_dense
+ div
+ div.row
+ div(class='forestAttr mr-3') forest area is:
+ div #{forest_area}
+ div.row
+ div(class='forestAttr mr-3') forest color is:
+ div #{forest_color}
+ div.row
+ div(class='forestAttr mr-3') forest dense is:
+ div #{forest_dense}
