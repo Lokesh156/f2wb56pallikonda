@@ -3,7 +3,7 @@ extends layout
 block content 
   h1= title 
  
-  form(id='forestForm', action="/resource/forest", method="POST") 
+  form(id='forestForm', action="/resource/forest", method="POST",class='styling')
     div.form-group 
         label.forestAttr(for='forest_area') forest area
         input#forest_area(type='text', name='forest_area') 
