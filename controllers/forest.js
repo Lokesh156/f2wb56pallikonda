@@ -55,6 +55,7 @@ exports.forest_update_put = function(req, res) {
 exports.forest_view_all_Page = async function(req, res) {
   try{
   theForests = await Forest.find();
+  console.log("here :"+ theForests);
   res.render('forest', { title: 'forest Search Results', result: theForests });
   }
   catch(err){
