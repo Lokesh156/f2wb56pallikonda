@@ -2,14 +2,16 @@ extends layout
 
 block content
   h1= title
-  - let results = result
+  - let items = result
   div(class="container-fluid") 
-   div(class="row")
-    each forest,index in results
-       div(class="col-sm-2" onclick=`buy(${index})`) forest_area: #{forest.forest_area}, forest_color: #{forest.forest_color}, forest_dense: #{forest.forest_dense} 
-  script.
-    let item = 0
-      function buy(item){
-        alert(`You purchased item ${item}`);
-      }
+    div(class="row m-1") 
+      each item in items  
+        - let destination = `dispatch(\"/forest/update?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.forest_area}(#{item.forest_color}) is #{item.forest_dense} 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+   
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    } 
    
