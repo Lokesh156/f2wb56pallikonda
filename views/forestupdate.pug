@@ -1,7 +1,8 @@
 extends layout 
  
 block content 
-  h1= title 
+  h1= title
+   
  
   - let forestid = toShow._id 
   - let forest_area = toShow.forest_area 
@@ -12,20 +13,20 @@ block content
     div.mr-1 ID is 
     div #{forestid} 
   - let actionid = "/resource/forest/" + forestid 
-  form(id='ForestForm', action= actionid, method="PUT") 
+  form(id='forestForm', action= actionid, method="PUT") 
     div.form-group 
-        label.forestAttr(for='forest_area')  forest_area 
+        label.forestAttr(for='forest_area') forest_area
         input#forest_area(type='text', name='forest_area', value= forest_area ) 
     div.form-group 
-        label.forestAttr(for='forest_color')  forest_color
+        label.forestAttr(for='forest_color') forest_color 
         input#forest_color(type='text', name='forest_color', value= forest_color ) 
     div.form-group 
-        label.forestAttr(for='forest_dense')  forest_dense 
-        input#forest_dense(type='text', name='forest_dense', value= forest_dense) 
+        label.forestAttr(for='forest_dense') forest_dense
+        input#forest_dense(type='number', name='forest_dense', value= forest_dense ) 
     input(type="submit") 
  
   script. 
-    document.forms['ForestForm'].addEventListener('submit', (event) => { 
+    document.forms['forestForm'].addEventListener('submit', (event) => { 
       event.preventDefault(); 
       // TODO do something here to show user that form is being submitted 
       fetch(event.target.action, { 
